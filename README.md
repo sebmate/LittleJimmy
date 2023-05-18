@@ -20,6 +20,8 @@ The information and files in this repository are provided under the [CERN-OHL-S 
 
 ## Implementation
 
+![Schematic](images/Schematic.png)
+
 The LittleJimmy board implements a "crowbar circuit" (see [this](https://circuitdigest.com/electronic-circuits/crowbar-circuit-diagram) link for an excellent description). In case the linear regulator fails, a zener diode triggers the thyristor and creates a full short on the 5V rail (hence the name "crowbar"), which can be used to blow a fuse that protects the development board.
 
 The LittleJimmy board has two connectors, one with 3 pins and one with 4 pins. The 3 pin connector can be used for the "MEGA 2560 PRO" board, the 4 pin connector with "Uno" or "Mega 2560" compatible development boards.
@@ -30,4 +32,4 @@ Also note that it is necessary to protect VIN of the development board with a fu
 
 ## Parts Lists
 
-A lists for the German electronics distributor Reichelt can be accessed directly via this link: [https://www.reichelt.de/my/2052760](https://www.reichelt.de/my/2052760). This list may contain alternative parts that are not essential. The list should therefore not be ordered blindly. Please note that I am not affiliated with Reichelt and am only providing this list for your convenience. The parts may be available from other vendors at a lower price.
+A list for the German electronics distributor Reichelt can be accessed directly via this link: [https://www.reichelt.de/my/2052760](https://www.reichelt.de/my/2052760). This list may contain alternative parts that are not essential. The list should therefore not be ordered blindly. Please note that I am not affiliated with Reichelt and am only providing this list for your convenience. The parts may be available from other vendors at a lower price.
