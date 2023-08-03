@@ -1,8 +1,15 @@
-# LittleJimmy
+# LittleJimmy Crowbar Protection Circuit
 
 ![LittleJimmy Rendering](images/LittleJimmy.png)
 
-**This is currently a work-in progress!**
+## Work-in-Progress!
+
+Version 2 of should fix the following issues:
+
+* Wrong orientation of the BT169B thyristor
+* Wrong orientation of the connectors
+
+This assumption is based on my experience with the old version. I have not ordered and tested PCBs of this version yet.
 
 ## Introduction
 
@@ -22,13 +29,17 @@ The information and files in this repository are provided under the [CERN-OHL-S 
 
 ![Schematic](images/Schematic.png)
 
-The LittleJimmy board implements a "crowbar circuit" (see [this](https://circuitdigest.com/electronic-circuits/crowbar-circuit-diagram) link for an excellent description). In case the linear regulator fails, a zener diode triggers the thyristor and creates a full short on the 5V rail (hence the name "crowbar"), which can be used to blow a fuse that protects the development board.
+The LittleJimmy board implements a "crowbar circuit" (see [this](https://circuitdigest.com/electronic-circuits/crowbar-circuit-diagram) link for an excellent description). In case the linear regulator fails, a Zener diode trip the thyristor and creates a full short on the 5V rail (hence the name "crowbar"), which can be used to blow a fuse that protects the development board.
 
-The LittleJimmy board has two connectors, one with 3 pins and one with 4 pins. The 3 pin connector can be used for the "MEGA 2560 PRO" board, the 4 pin connector with "Uno" or "Mega 2560" compatible development boards.
+The LittleJimmy board has two connectors, one with 3 pins and one with 4 pins. The 3-pin connector can be used for the "MEGA 2560 PRO" board, the 4-pin connector with "Uno" or "Mega 2560" compatible development boards.
 
 The board can accommodate two optional tantalum capacitors (C1 and C2) in case the "AMS1117" is to be replaced with another "1117"-type regulator from a renowned manufacturer (e.g. LM1117 by Texas Instruments or TS1117 by Taiwan Semiconductor), purchased from a reputable electronics distributor.
 
-Also note that it is necessary to protect VIN of the development board with a fuse. Its value must be high enough to not blow during normal operation, but lower than the allowed current of the thyristor (0.8A). Depending on the application, a 0.1A fuse might be a good choice.
+**Important:** Note that it is necessary to protect VIN of the development board with a fuse. Its value must be high enough to not blow during normal operation, but lower than the allowed current of the thyristor (0.8A). Depending on the application, a 0.1A fuse might be a good choice.
+
+## Testing the Circuit
+
+To test the crowbar circuit, connect it to a laboratory power supply set to 3 V with a current limit of 50 mA. The circuit should draw (almost) no current and the power supply should be in constant voltage (CV) mode. Increase the voltage slowly. When it exceeds the Zener diode voltage (e.g., 5.1V), the thyristor should trip and produce a short circuit, and the power supply should go into constant current (CC) mode. Note that the circuit may not trip exactly at the Zener diode voltage.
 
 ## Parts Lists
 
