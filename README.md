@@ -2,15 +2,6 @@
 
 ![LittleJimmy Rendering](images/LittleJimmy.png)
 
-## Work-in-Progress!
-
-Version 2 of should fix the following issues:
-
-* Wrong orientation of the BT169B thyristor
-* Wrong orientation of the connectors
-
-This assumption is based on my experience with the old version. I have not ordered and tested PCBs of this version yet.
-
 ## Introduction
 
 LittleJimmy is a small crowbar circuit for Arduino-like development boards aiming to protect against a failing AMS1117 5.0V linear voltage regulator when the board is powered over VIN. 
@@ -21,6 +12,8 @@ Please note that real Arduino boards use high-quality linear voltage regulators.
 
 (In case you're wondering: The name "LittleJimmy" comes from the fact that in Britain and Australia a crowbar is also called a "jimmy". :smiley: )
 
+![Schematic](images/Mounted.jpg)
+
 ## Licensing
 
 The information and files in this repository are provided under the [CERN-OHL-S v2](cern_ohl_s_v2.txt) open source license (please click [here](https://ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2) for details).
@@ -29,17 +22,19 @@ The information and files in this repository are provided under the [CERN-OHL-S 
 
 ![Schematic](images/Schematic.png)
 
-The LittleJimmy board implements a "crowbar circuit" (see [this](https://circuitdigest.com/electronic-circuits/crowbar-circuit-diagram) link for an excellent description). In case the linear regulator fails, a Zener diode trip the thyristor and creates a full short on the 5V rail (hence the name "crowbar"), which can be used to blow a fuse that protects the development board.
+The LittleJimmy board implements a "crowbar circuit" (see [this](https://circuitdigest.com/electronic-circuits/crowbar-circuit-diagram) link for an excellent description). In case the linear regulator fails, a Zener diode trips the thyristor and creates a full short on the 5V rail (hence the name "crowbar"), which then blows a fuse that protects the development board.
 
 The LittleJimmy board has two connectors, one with 3 pins and one with 4 pins. The 3-pin connector can be used for the "MEGA 2560 PRO" board, the 4-pin connector with "Uno" or "Mega 2560" compatible development boards.
 
 The board can accommodate two optional tantalum capacitors (C1 and C2) in case the "AMS1117" is to be replaced with another "1117"-type regulator from a renowned manufacturer (e.g. LM1117 by Texas Instruments or TS1117 by Taiwan Semiconductor), purchased from a reputable electronics distributor.
 
+When using a 5.1 V Zener diode, the circuit should trip at about 5.5V, according to my tests. Note that not all 5.1 V Zener diodes behave the same. The "BZX 85C5V1", for example, trips the circuit at 4.5 V. This may need some experimentation. I therefore suggest to mount the diode in a way it can be easily replaced. Unfortunately I do not have a model number for the one I'm currently using. I hope to be able to provide details in the near future. Feedback is welcome!
+
 **Important:** Note that it is necessary to protect VIN of the development board with a fuse. Its value must be high enough to not blow during normal operation, but lower than the allowed current of the thyristor (0.8A). Depending on the application, a 0.1A fuse might be a good choice.
 
 ## Testing the Circuit
 
-To test the crowbar circuit, connect it to a laboratory power supply set to 3 V with a current limit of 50 mA. The circuit should draw (almost) no current and the power supply should be in constant voltage (CV) mode. Increase the voltage slowly. When it exceeds the Zener diode voltage (e.g., 5.1V), the thyristor should trip and produce a short circuit, and the power supply should go into constant current (CC) mode. Note that the circuit may not trip exactly at the Zener diode voltage.
+To test the crowbar circuit, connect it to a laboratory power supply set to 3 V with a current limit of 50 mA. The circuit should draw (almost) no current and the power supply should be in constant voltage (CV) mode. Increase the voltage slowly. When it exceeds the Zener diode voltage, the thyristor should trip and produce a short circuit, and the power supply should go into constant current (CC) mode. Note that the circuit may not trip exactly at the Zener diode voltage (see above).
 
 ## Parts Lists
 
